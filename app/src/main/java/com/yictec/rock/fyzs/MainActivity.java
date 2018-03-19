@@ -18,6 +18,7 @@ import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -130,6 +131,17 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         if (params != null && !params.isEmpty()) {
             logTxt += " ;params :" + params;
         }
+        if(name =="asr.partial"){
+            if (params.contains("\"final_result\"")){
+                Gson gson = new Gson();
+//                String[] strings = gson.fromJson(params, String[].class);
+                Respone_info rsp = gson.fromJson(params,Respone_info.class);
+//                List<Respone_info> ps = gson.fromJson(params, new TypeToken<Respone_info<Throwable>>(){}.getType());
+                mTextMessage.setText(rsp.best_result);
+//                Log.i("ss",params);
+            }
+
+        }
         if (name.equals(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL)) {
             if (params.contains("\"nlu_result\"")) {
                 if (length > 0 && data.length > 0) {
@@ -139,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         } else if (data != null) {
             logTxt += " ;data length=" + data.length;
         }
-        printLog(logTxt);
+//        printLog(logTxt);
     }
 
     private void printLog(String text) {
@@ -217,5 +229,4 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     }
 
 }
-
 
