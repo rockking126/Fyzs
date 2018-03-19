@@ -6,20 +6,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by rock on 2018-03-18.
  */
-public class Network {
+public class Network_func {
 
-    private static volatile Network mInstance;
+    private static volatile Network_func mInstance;
     private APi mApi;
 
-    private Network(){
+    private Network_func(){
 
     }
 
-    public static Network getInstance(){
+    public static Network_func getInstance(){
         if(mInstance==null){
-            synchronized (Network.class){
+            synchronized (Network_func.class){
                 if(mInstance==null){
-                    mInstance=new Network();
+                    mInstance=new Network_func();
                 }
             }
         }
@@ -28,12 +28,12 @@ public class Network {
 
     public APi getApi(){
         if(mApi==null){
-            synchronized (Network.class){
+            synchronized (Network_func.class){
                 if(mApi==null){
                     Retrofit retrofit = new Retrofit.Builder()
                             //使用自定义的mGsonConverterFactory
                             .addConverterFactory(GsonConverterFactory.create())
-                            .baseUrl("https://aip.baidubce.com/")
+                            .baseUrl("https://aip.baid343ubce.com/")
                             .build();
                     mApi = retrofit.create(APi.class);
                 }

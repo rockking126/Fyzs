@@ -10,7 +10,7 @@ import java.util.List;
  * @ author：xujun on 2016-8-25 14:54
  * @ email：gdutxiaoxu@163.com
  */
-public class News {
+public class Msg_backs {
 
 
     public int code;
@@ -47,7 +47,7 @@ public class News {
 
     @Override
     public String toString() {
-        return "News{" +
+        return "Msg_backs{" +
                 "code=" + code + access_token +
                 ", msg='" + msg + '\'' +
                 ", newslist=" + newslist +
