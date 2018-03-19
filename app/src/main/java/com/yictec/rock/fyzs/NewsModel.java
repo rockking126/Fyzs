@@ -13,6 +13,8 @@ import retrofit2.Response;
 public class NewsModel {
 
     public static String a = "";
+
+
     public static void baidu(String grant_type,String client_id, String client_secret ){
         APi api = Network_func.getInstance().getApi();
         Call<Msg_backs> news = api.baidu(grant_type,client_id, client_secret);
@@ -36,6 +38,28 @@ public class NewsModel {
     public static String get_s(){
         return a;
     }
+
+//
+//    public static void translate_txt(String contents,String src,String dest,String ackey){
+//        APi api = Network_func.getInstance().getApi();
+//        Call<Msg_backs> news = api.google(contents,src,dest,ackey);
+//        news.enqueue(new Callback<Msg_backs>() {
+//            @Override
+//            public void onResponse(Call<Msg_backs> call, Response<Msg_backs> response) {
+//
+//                Msg_backs body = response.body();
+//                Log.i("onResponse:   =",body.access_token);
+//                a = body.access_token.toString();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Msg_backs> call, Throwable t) {
+//
+//                Log.i("onResponse:   =",t.getMessage());
+//            }
+//        });
+//    }
+
 
 //    public static void getNews(String number, String page) {
 //        APi api = Network_func.getInstance().getApi();

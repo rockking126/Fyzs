@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
 
     private TextView mTextMessage;
+    private TextView T_en;
     private Button button_a;
     private EventManager asr;
 
@@ -70,12 +71,13 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         asr = EventManagerFactory.create(this, "asr");
         asr.registerListener(this); //  EventListener 中 onEvent方法
 
-        gettk("client_credentials"
-                ,"amoMVOwvDS513xUAIGhpZp3I"
-                ,"dSLiGRSpSC1IW2v5oVxGvRCoTlXIuPOT");
-
+//        gettk("client_credentials"
+//                ,"amoMVOwvDS513xUAIGhpZp3I"
+//                ,"dSLiGRSpSC1IW2v5oVxGvRCoTlXIuPOT");
+        translate_txt("我是中国人","cn","en","text");
         mTextMessage = (TextView) findViewById(R.id.message);
         button_a = (Button) findViewById(R.id.button);
+        T_en = (TextView) findViewById(R.id.T_en);
 
 
 
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
                 Msg_backs body = response.body();
                 Log.i("onResponse:   =", body.access_token);
-                mTextMessage.setText(body.access_token.toString()+"8888");
+                T_en.setText(body.access_token.toString()+"8888");
             }
 
             @Override
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                 Respone_info rsp = gson.fromJson(params,Respone_info.class);
 //                List<Respone_info> ps = gson.fromJson(params, new TypeToken<Respone_info<Throwable>>(){}.getType());
                 mTextMessage.setText(rsp.best_result);
+                translate_txt("我是中国人","cn","en","text");
 //                Log.i("ss",params);
             }
 
@@ -227,6 +230,31 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private void unloadOfflineEngine() {
         asr.send(SpeechConstant.ASR_KWS_UNLOAD_ENGINE, null, null, 0, 0); //
     }
+
+
+
+    public  void   translate_txt(String contents,String src,String dest,String ackey){
+        APi api = Network_func.getInstance().getTrans();
+        Call<Msg_from_google> news = api.google(contents,"cn","en","text","base","AIzaSyA7p8XTMiubDHSn4Q-2ULCsnuWB-0jgbwc");
+        news.enqueue(new Callback<Msg_from_google>() {
+            @Override
+            public void onResponse(Call<Msg_from_google> call, Response<Msg_from_google> response) {
+
+                Msg_from_google body = response.body();
+                Log.i("onResponse:   =", body.data.toString());
+
+                T_en.setText(body.data.toString()+"8888");
+            }
+
+            @Override
+            public void onFailure(Call<Msg_from_google> call, Throwable t) {
+
+                Log.i("onResponse:   =",t.getMessage());
+            }
+        });
+    }
+
+
 
 }
 

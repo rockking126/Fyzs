@@ -44,4 +44,25 @@ public class Network_func {
         return mApi;
 
     }
+
+
+
+    public APi getTrans(){
+        if(mApi==null){
+            synchronized (Network_func.class){
+                if(mApi==null){
+                    Retrofit retrofit = new Retrofit.Builder()
+                            //使用自定义的mGsonConverterFactory
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .baseUrl("https://translation.googleapis.com/")
+                            .build();
+                    mApi = retrofit.create(APi.class);
+                }
+            }
+
+        }
+
+        return mApi;
+
+    }
 }

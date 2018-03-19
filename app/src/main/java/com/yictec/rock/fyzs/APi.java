@@ -35,6 +35,12 @@ public interface APi {
     @GET("oauth/2.0/token")
     Call<Msg_backs> baidu(@Query("grant_type") String grant_type, @Query("client_id") String client_id, @Query("client_secret") String client_secret);
 
+
+
+    @Headers({"Content-Type: application/json"})
+    @POST("language/translate/v2")
+    Call<Msg_from_google> google(@Query("q") String q, @Query("source") String source, @Query("target") String target, @Query("format") String format, @Query("model") String model, @Query("key") String key);
+
 //
 //    @Headers({"apikey:81bf9da930c7f9825a3c3383f1d8d766" ,"Content-Type:application/json"})
 //    @GET("{type}/{type}")
