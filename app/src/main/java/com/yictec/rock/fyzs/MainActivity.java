@@ -10,11 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.yictec.rock.fyzs.APi;
-import com.yictec.rock.fyzs.Network;
-import com.yictec.rock.fyzs.News;
-import com.yictec.rock.fyzs.NewsModel;
-import com.yictec.rock.fyzs.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
