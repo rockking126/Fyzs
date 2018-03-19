@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Fyzs</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">翻译助手</string>
+    <string name="title_home">主页</string>
+    <string name="title_dashboard">设置</string>
+    <string name="title_notifications">关于我们</string>
+    <string name="bt_start">按我说话</string>
+
 </resources>
